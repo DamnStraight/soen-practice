@@ -73,13 +73,61 @@ int ArrayList_pop(ArrayList *arr) {
     return *(arr->data + arr->size);
 }
 
-int peek(ArrayList *arr) {
-    if (arr->size == 0) {
-        perror("ArrayList is empty");
+/**
+ * Inserts value at given index - O(n)
+ *
+ * @param arr
+ * @param index
+ * @param val
+ */
+void ArrayList_insert(ArrayList *arr, int index, int val) {
+    // If the endex is greater than the array size, index is OOB
+    if (index > arr->size) {
+        perror("Index out of bounds");
         exit(EXIT_FAILURE);
     }
 
-    return *(arr->data + arr->size);
+    resize(arr, arr->size + 1);
+
+    int *newArray = malloc(sizeof(int) * arr->capacity);
+
+    for (int i = 0; i < arr->size; i++) {
+        if (i == index) {
+            newArray[i] = val;
+        } else if (i > index) {
+            newArray[i] = arr->data[i - 1];
+        } else {
+            newArray[i] = arr->data[i];
+        }
+    }
+
+    free(arr->data);
+    arr->data = newArray;
+}
+
+void ArrayList_print(ArrayList *arr) {
+    printf("{ ");
+    for (int i = 0; i < arr->size; i++) {
+        printf("%d%s", arr->data[i], (i == arr->size - 1) ? "" : ",");
+    }
+    printf(" }\n");
+}
+
+/**
+ * Get element at index
+ * 
+ * @param arr
+ * @param index
+ * @return
+ */
+int ArrayList_get(ArrayList *arr, int index) {
+    // If the endex is greater than the array size, index is OOB
+    if (index > arr->size) {
+        perror("Index out of bounds");
+        exit(EXIT_FAILURE);
+    }
+
+    return arr->data[index];
 }
 
 bool is_empty(ArrayList *arr) {

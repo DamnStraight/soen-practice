@@ -15,12 +15,16 @@ void ArrayList_push(ArrayList *arr, int val);
 
 int ArrayList_pop(ArrayList *arr);
 
+void ArrayList_insert(ArrayList *arr, int index, int value);
+
+void ArrayList_print(ArrayList *arr);
+
+int ArrayList_get(ArrayList *arr, int index);
+
 int size(ArrayList *arr);
 
 int capacity(ArrayList *arr);
 
 bool is_empty(ArrayList *arr);
-
-void ArrayList_insert(ArrayList *arr, int index, int value);
 
 #endif //ARRAYLIST_ARRAYLIST_H

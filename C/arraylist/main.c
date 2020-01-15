@@ -1,21 +1,40 @@
 #include <stdio.h>
 #include "arraylist.h"
 
-int main() {
-    ArrayList *arr = ArrayList_new(32);
+void test_push_pop() {
+    ArrayList *arr = ArrayList_new();
+
+    ArrayList_push(arr, 1);
     ArrayList_push(arr, 2);
     ArrayList_push(arr, 3);
+
     printf("%d\n", *(arr->data + 1));
     printf("%d\n", ArrayList_pop(arr));
     printf("%d\n", ArrayList_pop(arr));
 
+    ArrayList_print(arr);
+}
+
+void test_resize_insert() {
+    ArrayList *arr = ArrayList_new();
+
+    // Should invoke a resize
     for (int i = 0; i < 62; i++) {
         ArrayList_push(arr, i);
     }
 
-    for (int i = 0; i < size(arr); i++) {
-        printf("%d\n", arr->data[i]);
-    }
+    ArrayList_print(arr);
+
+    ArrayList_insert(arr, 1, 777);
+    ArrayList_insert(arr, 4, 777);
+
+    ArrayList_print(arr);
+}
+
+int main() {
+    test_push_pop();
+
+    test_resize_insert();
 
     return 0;
 }
