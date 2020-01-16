@@ -15,9 +15,11 @@ void ArrayList_push(ArrayList *arr, int val);
 
 int ArrayList_pop(ArrayList *arr);
 
-void ArrayList_insert(ArrayList *arr, int index, int value);
+void ArrayList_insertAt(ArrayList *arr, int index, int value);
 
 void ArrayList_print(ArrayList *arr);
+
+void ArrayList_removeAt(ArrayList *arr, int index);
 
 int ArrayList_get(ArrayList *arr, int index);
 

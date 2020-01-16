@@ -25,10 +25,14 @@ void test_resize_insert() {
 
     ArrayList_print(arr);
 
-    ArrayList_insert(arr, 1, 777);
-    ArrayList_insert(arr, 4, 777);
+    ArrayList_insertAt(arr, 1, 777);
+    ArrayList_insertAt(arr, 4, 777);
 
     ArrayList_print(arr);
+
+    ArrayList_removeAt(arr, 4);
+
+
 }
 
 int main() {

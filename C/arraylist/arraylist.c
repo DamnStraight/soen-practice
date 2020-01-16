@@ -17,7 +17,7 @@ ArrayList *ArrayList_new() {
 }
 
 /**
- * Increases the array capacity based on size to capacity comparison.
+ * Increases the array capacity based on size to capacity comparison. O(n)
  *
  */
 void resize(ArrayList *arr, int size) {
@@ -80,7 +80,7 @@ int ArrayList_pop(ArrayList *arr) {
  * @param index
  * @param val
  */
-void ArrayList_insert(ArrayList *arr, int index, int val) {
+void ArrayList_insertAt(ArrayList *arr, int index, int val) {
     // If the endex is greater than the array size, index is OOB
     if (index > arr->size) {
         perror("Index out of bounds");
@@ -105,6 +105,35 @@ void ArrayList_insert(ArrayList *arr, int index, int val) {
     arr->data = newArray;
 }
 
+int ArrayList_removeAt(ArrayList *arr, int index) {
+    if (arr->size == 0) {
+        perror("Empty array");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = index; i < (arr->size - 1); i++) {
+        arr->data[i] = arr->data[i + 1];
+    }
+    arr->size--;
+}
+
+void ArrayList_remove(ArrayList *arr, int val) {
+    int elementIndex = -1;
+
+    for (int i = 0; i < arr->size; i++) {
+        if (arr->data[i] == val) {
+            elementIndex = i;
+        }
+    }
+
+    if (elementIndex == -1) return;
+
+    for (int i = elementIndex; i < (arr->size - 1); i++) {
+        arr->data[i] = arr->data[i + 1];
+    }
+    arr->size--;
+}
+
 void ArrayList_print(ArrayList *arr) {
     printf("{ ");
     for (int i = 0; i < arr->size; i++) {
@@ -114,8 +143,8 @@ void ArrayList_print(ArrayList *arr) {
 }
 
 /**
- * Get element at index
- * 
+ * Get element at index - O(1)
+ *
  * @param arr
  * @param index
  * @return
