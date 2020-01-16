@@ -43,7 +43,7 @@ int LinkedList_get(LinkedList *list, int index) {
 
     if (index == 0) return list->head->data;
 
-    Node* traversalNode = list->head;
+    Node *traversalNode = list->head;
     int traversalIndex = 0;
 
     while (traversalIndex != index) {
@@ -67,10 +67,12 @@ void LinkedList_insertAt(LinkedList *list, int index, int value) {
 
     Node *insertNode = new_node(value);
 
+    // If the index is 0 we need to replace the head of the LinkedList
     if (index == 0) {
         insertNode->next = list->head;
         list->head = insertNode;
     } else {
+        // Otherwise we can pull out the node from the head, and traverse normally
         Node *traversalNode = list->head;
         int traversalIndex = 0;
 
@@ -125,6 +127,34 @@ void LinkedList_removeAt(LinkedList *list, int index) {
 
     free(temp);
     list->size--;
+}
+
+void LinkedList_remove(LinkedList *list, int value) {
+    if (list->size == 0) return;
+
+    Node *traversalNode = list->head;
+    Node *prevNode = NULL;
+
+    while (traversalNode != NULL) {
+        if (traversalNode->data == value) {
+            // It's the head
+            if (prevNode == NULL) {
+                list->head = traversalNode->next;
+            } else {
+                if (traversalNode->next != NULL) {
+                    prevNode->next = NULL;
+                } else {
+                    prevNode->next = traversalNode->next;
+                }
+            }
+
+            list->size--;
+            return free(traversalNode);
+        }
+
+        prevNode = traversalNode;
+        traversalNode = traversalNode->next;
+    }
 }
 
 int LinkedList_size(LinkedList *list) {

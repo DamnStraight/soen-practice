@@ -27,6 +27,8 @@ void LinkedList_insertAt(LinkedList *list, int index, int value);
 
 void LinkedList_removeAt(LinkedList *list, int index);
 
+void LinkedList_remove(LinkedList *list, int value);
+
 void LinkedList_push(LinkedList *list, int value);
 
 void LinkedList_print(LinkedList *list);

@@ -24,5 +24,10 @@ int main() {
 
     LinkedList_print(list);
 
+    LinkedList_remove(list, 777);
+    LinkedList_remove(list, 7);
+
+    LinkedList_print(list);
+
     return 0;
 }
