@@ -105,7 +105,7 @@ void ArrayList_insertAt(ArrayList *arr, int index, int val) {
     arr->data = newArray;
 }
 
-int ArrayList_removeAt(ArrayList *arr, int index) {
+void ArrayList_removeAt(ArrayList *arr, int index) {
     if (arr->size == 0) {
         perror("Empty array");
         exit(EXIT_FAILURE);

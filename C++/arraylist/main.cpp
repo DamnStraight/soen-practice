@@ -11,5 +11,11 @@ int main() {
     arr.pop();
     arr.print();
 
+    for (int i = 0; i <= 34; i++) {
+        arr.push(i);
+    }
+
+    arr.print();
+
     return 0;
 }

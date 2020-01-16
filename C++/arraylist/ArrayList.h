@@ -18,6 +18,21 @@ class ArrayList {
     int size;
     T *data;
 
+    void resize_expand() {
+        int newCapacity = capacity * GROWTH_FACTOR;
+        T *newArr = (T*) malloc(sizeof(T) * newCapacity);
+
+        printf("Resizing from %d -> %d\n", capacity, newCapacity);
+
+        for (int i = 0; i < size; i++) {
+            newArr[i] = data[i];
+        }
+
+        free(this->data);
+        this->capacity = newCapacity;
+        this->data = newArr;
+    }
+
 public:
     ArrayList() {
         this->capacity = DEFAULT_CAPACITY;
@@ -39,10 +54,10 @@ public:
         if (index < 0 || index >= capacity) { throw "Index out of bounds"; };
 
         if (size + 1 == capacity) {
-            // Then we are full, so resize
+            resize_expand();
         }
 
-        T *newArr = malloc(sizeof(int) * capacity);
+        T *newArr = (T*) malloc(sizeof(int) * capacity);
 
         for (int i = 0; i < size; i++) {
             if (i < index) {
@@ -62,7 +77,7 @@ public:
     T removeAt(int index) {
         if (index < 0 || index >= capacity) { throw "Index out of bounds"; };
 
-        T *newArr = malloc(sizeof(T) * capacity);
+        T *newArr = (T*) malloc(sizeof(T) * capacity);
 
         for (int i = 0; i < size; i++) {
             if (i < index) {
@@ -83,6 +98,10 @@ public:
     };
 
     void push(T val) {
+        if (size + 1 == capacity) {
+            resize_expand();
+        }
+
         data[size] = val;
         size++;
     };
