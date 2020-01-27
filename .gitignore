@@ -4,3 +4,7 @@ venv/
 .vscode/
 .mypy_cache/
 .dmypy.json
+.idea/
+target/
+**/*.exe
+**/*.pdb

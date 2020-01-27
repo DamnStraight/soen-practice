@@ -1,0 +1,13 @@
+[package]
+name = "linked-list"
+version = "0.1.0"
+authors = ["Steven"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[[bin]]
+name = "linked-list"
+path = "main.rs"
